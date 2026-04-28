@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 254 54% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 254 54% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 254 54% 15%;
+    --primary: 227 99% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 227 9% 96%;
+    --secondary-foreground: 254 54% 15%;
+    --muted: 227 9% 96%;
+    --muted-foreground: 222 9% 43%;
+    --accent: 227 9% 96%;
+    --accent-foreground: 254 54% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 227 99% 54%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 254 54% 10%;
+    --foreground: 0 0% 98%;
+    /* ... add more dark mode vars if needed ... */
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-foreground antialiased;
+    font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .container-px {
+    @apply px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .fade-in-up {
+    @apply opacity-0 translate-y-6 transition-all duration-700 ease-out;
+  }
+  .fade-in-up.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .mask-edges {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .container {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-4 max-w-[1200px] mx-auto;
+  }
+}
