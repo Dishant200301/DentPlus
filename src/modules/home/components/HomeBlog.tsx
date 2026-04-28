@@ -9,9 +9,9 @@ const featuredPosts = blogPosts.slice(0, 2);
 
 export function HomeBlog() {
   return (
-    <section className="px-0 md:px-4 py-8 md:py-12 lg:py-4">
+    <section className="px-0 lg:px-4 py-4 md:py-6 lg:py-4">
       <div
-        className="relative rounded-[20px] md:rounded-[24px] lg:rounded-[32px] min-h-auto md:min-h-[1196px] overflow-hidden"
+        className="relative rounded-[20px] md:rounded-[24px] lg:rounded-[32px] min-h-auto xl:min-h-[896px] overflow-hidden"
 
       >
         {/* Background SVG */}
@@ -46,7 +46,7 @@ export function HomeBlog() {
             Stay Informed With<br />DentPlus Updates
           </h2>
         </motion.div>
-<div className ="mx-4 lg:mx-0">
+<div className ="container ">
         {/* Cards Container */}
         <div className="relative z-10 mx-auto w-full md:w-full lg:w-[calc(100%-32px)] px-4 md:px-6 lg:px-6 bg-white rounded-[16px] md:rounded-[20px] lg:rounded-[20px] p-4 md:p-5 lg:p-5 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           {featuredPosts.map((post) => (

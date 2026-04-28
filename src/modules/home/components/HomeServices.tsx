@@ -63,7 +63,7 @@ export function HomeServices() {
         <div className="w-full px-0 sm:px-0 lg:px-4 container-custom mx-auto">
           <div className="bg-[#1344FE] rounded-2xl xl:rounded-[32px] p-4 md:p-4 xl:p-14 min-h-[500px] md:min-h-[600px] lg:min-h-[650px] relative overflow-hidden flex flex-col justify-center">
             {/* Top Header Section */}
-            <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-12 lg:mb-20 relative z-10 w-full container">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-12 lg:mb-20 relative z-10 w-full container">
               <div className="max-w-[800px]">
                 <h2
                   className="text-white mt-4 md:mt-0 text-[28px] sm:text-[40px] md:text-[56px] lg:text-[48px] xl:text-[56px] leading-[1.1] md:leading-[1.2] font-medium tracking-[-1px] md:tracking-[-1.68px]"
@@ -87,7 +87,7 @@ export function HomeServices() {
 
             {/* Scrolling Cards Section - Vertical on mobile/tablet, Horizontal on LG+ */}
             <div className="relative h-auto lg:h-[340px] w-full px-0">
-              <div className="lg:hidden container mx-auto px-4 md:px-0">
+              <div className="lg:hidden md:container mx-auto px-0 md:px-0">
                 <div className="flex flex-col gap-6">
                   {serviceData.map((service) => (
                     <div

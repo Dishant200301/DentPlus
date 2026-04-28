@@ -58,9 +58,16 @@ function StarRating({ rating }: { rating: number }) {
 
 export function HomeTestimonial() {
   const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  const next = () => setIndex((p) => (p + 1) % testimonials.length);
-  const prev = () => setIndex((p) => (p === 0 ? testimonials.length - 1 : p - 1));
+  const next = () => {
+    setDirection(1);
+    setIndex((p) => (p + 1) % testimonials.length);
+  };
+  const prev = () => {
+    setDirection(-1);
+    setIndex((p) => (p === 0 ? testimonials.length - 1 : p - 1));
+  };
 
   return (
     <section className="px-0 sm:px-4 py-8 md:py-16 lg:py-20 bg-white">
@@ -91,7 +98,7 @@ export function HomeTestimonial() {
           ))}
         </div>
 
-        <div className="hidden lg:flex xl:hidden flex-col bg-[#F5F6F9] rounded-[32px] p-12 shadow-sm">
+        <div className="hidden lg:flex xl:hidden flex-col bg-[#F5F6F9] rounded-[32px] p-8 shadow-sm">
            <div className="flex flex-col">
               <div className="mb-10">
                 <svg width="60" height="48" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -154,56 +161,80 @@ export function HomeTestimonial() {
         </div>
       </div>
 
-      {/* Desktop View (Side-by-Side) - Preserved */}
-      <div className="hidden xl:flex container relative w-full min-h-[600px] bg-[#F5F6F9] rounded-[32px] overflow-hidden px-12 py-10 items-center gap-16">
-        <div className="w-[55%] flex flex-col h-full justify-center">
-          <div className="relative h-[480px] flex flex-col">
-            <AnimatePresence mode="wait">
+      {/* Desktop View (Side-by-Side) */}
+      <div className="hidden xl:flex relative w-[1080px] h-[672px] mx-auto bg-[#F5F6F9] rounded-[20px] overflow-hidden items-center justify-between px-[30px]">
+        {/* Left Side: Card Content Wrapper (500px width) */}
+        <div className="w-[500px] h-[576px] flex flex-col relative">
+          <div className="relative flex-1 flex flex-col overflow-hidden">
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={index}
-                initial={{ y: -20, opacity: 0 }}
+                custom={direction}
+                initial={{ y: direction > 0 ? -100 : 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 20, opacity: 0 }}
-                transition={{ duration: 0.6 }}
+                exit={{ y: direction > 0 ? 100 : -100, opacity: 0 }}
+                transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
                 className="flex flex-col items-start"
               >
                 <div className="mb-10">
                   <img src="/images/home/testimonial/quote.svg" alt="Quote" className="w-[80px] h-[80px]" />
                 </div>
                 <h4
-                  className="text-[32px] leading-[44px] font-normal text-[#1B123D] tracking-[-0.64px] mb-10"
+                  className="text-[28px] leading-[36px] font-normal text-[#1B123D] tracking-[-0.56px] min-h-[180px] mb-[52px]"
                   style={{ fontFamily: 'Poppins' }}
                 >
                   {testimonials[index].text}
                 </h4>
-                <div className="w-full border-t border-[#E7E7E7] mb-10" />
+                
+                {/* Horizontal Border */}
+                <div className="w-full border-t border-[#E7E7E7] mb-[36px]" />
+
+                {/* Card Info Content Wrapper */}
                 <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-4">
-                    <img src={testimonials[index].avatar} alt={testimonials[index].name} className="w-[56px] h-[56px] rounded-full object-cover" />
-                    <span className="text-[20px] font-medium text-[#1B123D] font-instrument-sans">{testimonials[index].name}</span>
+                  <div className="flex items-center gap-[12px]">
+                    <img src={testimonials[index].avatar} alt={testimonials[index].name} className="w-[48px] h-[48px] rounded-full object-cover" />
+                    <span className="text-[20px] font-medium text-[#1B123D] font-instrument-sans tracking-[-0.4px]">{testimonials[index].name}</span>
                   </div>
                   <StarRating rating={testimonials[index].rating} />
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Bottom Nav Pill */}
-            <div className="mt-auto w-full h-[80px] bg-white rounded-full flex items-center justify-between px-6">
-              <button onClick={prev} className="w-12 h-12 bg-[#1344FE] text-white rounded-full flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            {/* Bottom Nav Pill - Fixed Position (88px Height) */}
+            <div className="mt-auto w-full h-[88px] bg-white rounded-[64px] flex items-center justify-between px-[20px] border border-[#E7E7E7]">
+              {/* Active Left Arrow Icon */}
+              <button 
+                onClick={prev} 
+                className="w-[48px] h-[48px] bg-[#1344FE] text-white rounded-[26px] flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="19" y1="12" x2="5" y2="12"></line>
                   <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
               </button>
-              <div className="flex gap-8">
+              
+              {/* Numbers Content Wrap */}
+              <div className="flex gap-[24px]">
                 {testimonials.map((t, idx) => (
-                  <span key={t.id} className={cn("text-[20px] font-medium font-instrument-sans", index === idx ? "text-[#1B123D]" : "text-[#9B99AB]")}>
+                  <span 
+                    key={t.id} 
+                    className={cn(
+                      "text-[20px] font-medium font-instrument-sans leading-[30px] tracking-[-0.4px] transition-colors cursor-pointer", 
+                      index === idx ? "text-[#1B123D]" : "text-[#636977]"
+                    )} 
+                    onClick={() => { setDirection(idx > index ? 1 : -1); setIndex(idx); }}
+                  >
                     {t.id}
                   </span>
                 ))}
               </div>
-              <button onClick={next} className="w-12 h-12 bg-[#F5F6F9] border border-[#E7E7E7] text-[#1B123D] rounded-full flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+
+              {/* Inactive Right Arrow Icon */}
+              <button 
+                onClick={next} 
+                className="w-[48px] h-[48px] bg-[#F5F6F9] border border-[#E7E7E7] text-[#1B123D] rounded-[26px] flex items-center justify-center transition-all hover:bg-[#1B123D] hover:text-white active:scale-95"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
@@ -212,15 +243,17 @@ export function HomeTestimonial() {
           </div>
         </div>
 
-        <div className="w-[45%] h-[550px] relative rounded-[24px] overflow-hidden">
-          <AnimatePresence mode="wait">
+        {/* Right Side: Card Image Wrap (460px width) */}
+        <div className="w-[460px] h-[632px] relative rounded-[20px] overflow-hidden">
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.img
               key={index}
+              custom={direction}
               src={testimonials[index].mainImage}
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ y: direction > 0 ? 150 : -150, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: direction > 0 ? -150 : 150, opacity: 0 }}
+              transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </AnimatePresence>
