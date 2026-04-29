@@ -47,7 +47,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({ selectedDate, onSelectDate 
 
       <div 
         ref={scrollRef}
-        className="flex gap-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth"
+        className="flex items-center gap-3 overflow-x-auto py-2 pb-4 no-scrollbar scroll-smooth"
       >
         {dates.map((date, i) => {
           const isSelected = formatDateToString(date) === formatDateToString(selectedDate);

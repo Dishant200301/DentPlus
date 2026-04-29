@@ -43,8 +43,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.service || !formData.doctor || !formData.phone) {
-        toast.error("Please fill in all required fields");
-        return;
+      toast.error("Please fill in all required fields");
+      return;
     }
 
     setLoading(true);
@@ -84,15 +84,15 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-[#1b123d]/40 backdrop-blur-sm"
           />
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -100,15 +100,15 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
           >
             {/* Header */}
             <div className="bg-[#1b123d] p-6 sm:p-8 text-white relative">
-              <button 
+              <button
                 onClick={onClose}
                 className="absolute top-4 right-4 sm:top-6 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
               >
                 <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
-              
+
               <h2 className="text-2xl sm:text-3xl font-medium tracking-tight mb-4" style={{ fontFamily: 'Poppins' }}>Booking Details</h2>
-              
+
               <div className="flex flex-wrap gap-3 sm:gap-4">
                 <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-[12px] sm:text-sm font-medium border border-white/10">
                   <Calendar className="w-3.5 h-3.5 sm:w-4 h-4" />
@@ -128,12 +128,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
                   <label className="text-[12px] sm:text-[13px] font-bold text-[#636977] uppercase tracking-wider ml-1">Full Name</label>
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-[#636977]/30" />
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="John Doe"
                       disabled={!!user}
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full h-12 sm:h-14 pl-10 sm:pl-12 pr-4 bg-white border border-[#e7e7e7] rounded-xl sm:rounded-2xl focus:border-[#1344fe] outline-none transition-all text-sm sm:text-base"
                     />
                   </div>
@@ -143,12 +143,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
                   <label className="text-[12px] sm:text-[13px] font-bold text-[#636977] uppercase tracking-wider ml-1">Email Address</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-[#636977]/30" />
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       placeholder="john@example.com"
                       disabled={!!user}
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full h-12 sm:h-14 pl-10 sm:pl-12 pr-4 bg-white border border-[#e7e7e7] rounded-xl sm:rounded-2xl focus:border-[#1344fe] outline-none transition-all text-sm sm:text-base"
                     />
                   </div>
@@ -158,11 +158,11 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
                   <label className="text-[12px] sm:text-[13px] font-bold text-[#636977] uppercase tracking-wider ml-1">Phone Number</label>
                   <div className="relative">
                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-[#636977]/30" />
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       placeholder="+1 (555) 000-0000"
                       value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full h-12 sm:h-14 pl-10 sm:pl-12 pr-4 bg-white border border-[#e7e7e7] rounded-xl sm:rounded-2xl focus:border-[#1344fe] outline-none transition-all text-sm sm:text-base"
                     />
                   </div>
@@ -170,9 +170,9 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
 
                 <div className="space-y-1.5">
                   <label className="text-[12px] sm:text-[13px] font-bold text-[#636977] uppercase tracking-wider ml-1">Select Service</label>
-                  <select 
+                  <select
                     value={formData.service}
-                    onChange={(e) => setFormData({...formData, service: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     className="w-full h-12 sm:h-14 px-4 bg-white border border-[#e7e7e7] rounded-xl sm:rounded-2xl focus:border-[#1344fe] outline-none transition-all appearance-none text-sm sm:text-base"
                   >
                     <option value="">Select Service...</option>
@@ -182,9 +182,9 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
 
                 <div className="space-y-1.5 md:col-span-2">
                   <label className="text-[12px] sm:text-[13px] font-bold text-[#636977] uppercase tracking-wider ml-1">Prefered Specialist</label>
-                  <select 
+                  <select
                     value={formData.doctor}
-                    onChange={(e) => setFormData({...formData, doctor: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
                     className="w-full h-12 sm:h-14 px-4 bg-white border border-[#e7e7e7] rounded-xl sm:rounded-2xl focus:border-[#1344fe] outline-none transition-all appearance-none text-sm sm:text-base"
                   >
                     <option value="">Select Doctor...</option>
@@ -196,25 +196,25 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, date, time
                   <label className="text-[12px] sm:text-[13px] font-bold text-[#636977] uppercase tracking-wider ml-1">Notes (Optional)</label>
                   <div className="relative">
                     <FileText className="absolute left-4 top-4 w-4 sm:w-5 h-4 sm:h-5 text-[#636977]/30" />
-                    <textarea 
+                    <textarea
                       placeholder="Any specific instructions..."
                       rows={3}
                       value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full pl-10 sm:pl-12 pr-4 py-3 bg-white border border-[#e7e7e7] rounded-xl sm:rounded-2xl focus:border-[#1344fe] outline-none transition-all text-sm sm:text-base"
                     />
                   </div>
                 </div>
               </div>
 
-              <PrimaryButton 
-                type="submit" 
-                variant="blue" 
+              <PrimaryButton
+                type="submit"
+                variant="blue"
                 className="w-full py-4 sm:py-5 rounded-xl sm:rounded-[20px]"
                 size="lg"
               >
                 {loading ? (
-                    <span className="flex items-center gap-2 text-sm sm:text-base"><Loader2 className="w-4 h-4 sm:w-5 h-5 animate-spin" /> Booking...</span>
+                  <span className="flex items-center gap-2 text-sm sm:text-base"><Loader2 className="w-4 h-4 sm:w-5 h-5 animate-spin" /> Booking...</span>
                 ) : "Confirm Appointment"}
               </PrimaryButton>
             </form>
