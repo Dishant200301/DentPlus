@@ -18,32 +18,55 @@ import TeamDetailsPage from "./modules/team/pages/TeamDetailsPage";
 import NotFoundPage from "@/modules/core/components/NotFoundPage";
 import ScrollToTop  from "./modules/core/components/ScrollToTop";
 
+import LoginPage from "./modules/auth/pages/LoginPage";
+import RegisterPage from "./modules/auth/pages/RegisterPage";
+import UserProfile from "./modules/profile/pages/UserProfile";
+import { WebAuthProvider } from "./modules/auth/context/WebAuthContext";
+import ProtectedRoute from "./modules/auth/components/ProtectedRoute";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/services/:slug" element={<ServiceDetailsPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogDetailsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/appointment" element={<AppointmentsPage />} />
-              <Route path="/doctors" element={<TeamPage />} />
-              <Route path="/doctors/:slug" element={<TeamDetailsPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <WebAuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/services/:slug" element={<ServiceDetailsPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogDetailsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/appointment" element={<AppointmentsPage />} />
+                <Route path="/doctors" element={<TeamPage />} />
+                <Route path="/doctors/:slug" element={<TeamDetailsPage />} />
+                
+                {/* Auth Routes */}
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                
+                {/* Protected Routes */}
+                <Route 
+                  path="/dashboard" 
+                  element={
+                    <ProtectedRoute>
+                      <UserProfile />
+                    </ProtectedRoute>
+                  } 
+                />
+                
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </WebAuthProvider>
     </QueryClientProvider>
   </HelmetProvider>
 );
