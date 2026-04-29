@@ -44,7 +44,7 @@ export default function AppointmentPage() {
 
         {/* Calendar Selection Area */}
         <div className="mt-16 max-w-5xl mx-auto">
-          <div className="bg-white border border-[#e7e7e7] rounded-2xl p-4 md:p-12 shadow-sm">
+          <div className="bg-white border border-[#e7e7e7] rounded-2xl p-4 md:p-8 shadow-sm">
             <div className="space-y-12">
               {/* Step 1: Date */}
               <DateSelector 
