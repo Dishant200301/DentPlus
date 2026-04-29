@@ -83,7 +83,7 @@ const AppointmentsTab = ({ userId }: { userId: string }) => {
 
 // ── Profile Tab ────────────────────────────────────────────────────────────
 const ProfileTab = ({ user, logout, navigate }: { user: any, logout: any, navigate: any }) => (
-  <div className="w-full bg-white border border-[#e7e7e7] rounded-3xl p-4 md:p-10">
+  <div className="w-full bg-white border border-[#e7e7e7] rounded-3xl p-4 md:p-8">
     <div className="flex flex-col gap-8">
       <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
         <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#1344fe]/10 flex items-center justify-center text-[#1344fe] font-bold text-2xl md:text-3xl border border-[#1344fe]/20 flex-shrink-0">
